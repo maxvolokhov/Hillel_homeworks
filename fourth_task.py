@@ -1,4 +1,4 @@
-vip_guests = ('Anna', 'John', 'Gary')
-common_guests = {'Jack', 'Peter', 'Olha'}
-print(f'Vip guests: {vip_guests}')
-print(f'Common guests: {common_guests}')
+vip_room = ('Anna', 'John', 'Gary')
+common_room = ['Jack', 'Peter', 'Olha']
+vip_seats = tuple()
+empty_seats = None
