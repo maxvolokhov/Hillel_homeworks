@@ -10,5 +10,4 @@ for pair in pairs:
             result_dict[key] = int(value)
         else:
             result_dict[key] = value
-
 print(result_dict)
