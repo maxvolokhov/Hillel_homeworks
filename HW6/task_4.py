@@ -2,7 +2,7 @@ __doc__ = """You have a file of unknown length. Write a function that
 will remove all numbers from each line of the file."""
 import re
 def remove_numbers_from_file(filename):
-    with open(filename, 'r') as file:
+    with open(filename) as file:
         lines = file.readlines()
 
     modified_lines = []
@@ -13,5 +13,6 @@ def remove_numbers_from_file(filename):
     with open(filename, 'w') as file:
         file.writelines(modified_lines)
 
-filename = r'./file_to_path'
+filename = r'./test.txt'
+# in line above path to file
 remove_numbers_from_file(filename)
