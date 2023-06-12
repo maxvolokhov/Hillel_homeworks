@@ -1,12 +1,11 @@
 class Worker:
     CONTRACT = 'VALID'
 
-    def __init__(self, name: str, rank: str, experience: float | int, salary: int):
+    def __init__(self, name=None, rank=None, experience=None, salary=None):
         self.__name = name
         self.__rank = rank
         self.__experience = experience
         self.__salary = salary
-
 
     @staticmethod
     def bonuses_dates_for_each_worker():
@@ -15,15 +14,16 @@ class Worker:
     @classmethod
     def convert_salary_to_uah(cls, name: str, salary: int):
         salary_in_uah = salary * 37
-        return cls(name, None, None, salary_in_uah)
+        return cls(name, salary_in_uah)
 
     @classmethod
     def salary_coefficient(cls, name: str, rank: str, experience: float | int, salary: int):
         sal_cof = salary / experience
-        return cls(name, None, None, sal_cof)
+        return cls(name, sal_cof)
 
     @classmethod
-    def create_worker_with_salary_expectation_in_1_year(cls, name: str, rank: str, experience: float | int, salary: int):
+    def create_worker_with_salary_expectation_in_1_year(cls, name: str, rank: str, experience: float | int,
+                                                        salary: int):
         salary_expectation = salary * 1.45
         return cls(name, rank, experience, salary_expectation)
 
@@ -93,9 +93,15 @@ class Worker:
         raise NotImplementedError('Delete is not supported for this attribute')
 
     def __str__(self):
-        return f"Worker(name='{self.__name}', rank='{self.__rank}', experience={self.__experience}," \
-               f"salary={self.__salary})"
+        class_methods = [
+            'convert_salary_to_uah',
+            'salary_coefficient',
+            'create_worker_with_salary_expectation_in_1_year'
+        ]
+        class_methods_str = ", ".join(class_methods)
 
+        return f"name='{self.__name}', rank='{self.__rank}', experience={self.__experience}, " \
+               f"salary={self.__salary}, Class Methods: {class_methods_str}"
 
 if __name__ == '__main__':
     tim = Worker('Tim', 'CEO', 15.5, 18000)
@@ -105,5 +111,4 @@ if __name__ == '__main__':
     salary_convert = Worker.convert_salary_to_uah('Tim', 18000)
     new_func = Worker.salary_coefficient('Joan', 'Director', 8, 10000)
     max_ = Worker.create_worker_with_salary_expectation_in_1_year('Max', 'QA Automation', 1.5, 2500)
-
-
+    print(max_)

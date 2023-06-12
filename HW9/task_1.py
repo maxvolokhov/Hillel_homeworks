@@ -1,8 +1,8 @@
 class Apple:
     ABBREVIATION = 'APL'
 
-    def __init__(self, department_name: str, workers_quantity: int, total_dep_exp : int | float,
-                 productivity_percent_of_department: int | float, salary_of_worker: int | float):
+    def __init__(self, department_name=None, workers_quantity=None, total_dep_exp=None,
+                 productivity_percent_of_department=None, salary_of_worker=None):
         self.__department_name = department_name
         self.__workers_quantity = workers_quantity
         self.__productivity_percent_of_department = productivity_percent_of_department
@@ -16,13 +16,13 @@ class Apple:
     @classmethod
     def workers_quantity_predict_in_2_years(cls, department_name: str, workers_quantity: int | float):
         quantity_predict = workers_quantity * 1.75
-        return cls(department_name, quantity_predict, None, None, None)
+        return cls(department_name, quantity_predict)
 
     @classmethod
     def calculate_middle_sal_of_all_dep(cls, department_name: str, workers_quantity: int | float,
-                                        salary_of_worker: int|float):
+                                        salary_of_worker: int | float):
         mid_sal = workers_quantity * salary_of_worker
-        return cls(department_name, workers_quantity, mid_sal, None, None)
+        return cls(department_name, workers_quantity, mid_sal)
 
     @property
     def department_name(self):
@@ -68,6 +68,7 @@ class Apple:
         else:
             print(f'Results of department should be a int or float with length equal or less than 7:'
                   f' {type(new_results_of_department)} : {len(new_results_of_department)}')
+
     @productivity_percent_of_department.deleter
     def productivity_percent_of_department(self):
         raise NotImplementedError('Delete is not supported for this attribute')
@@ -105,12 +106,18 @@ class Apple:
         raise NotImplementedError('Delete is not supported for this attribute')
 
     def __str__(self):
-        return f"{self.department_name}, {self.workers_quantity}, {self.productivity_percent_of_department}," \
-               f"{self.total_dep_exp}"
+        class_methods = [
+            'workers_quantity_predict_in_2_years',
+            'calculate_middle_sal_of_all_de'
+        ]
+        class_methods_str = ", ".join(class_methods)
+        return f"{self.department_name}, {self.workers_quantity}, {self.total_dep_exp}, {self.productivity_percent_of_department}, " \
+               f"{self.salary_of_worker}, Class Methods: {class_methods_str}"
+
 
 if __name__ == '__main__':
     Apple.company_palce_in_top_list()
     predict = Apple.workers_quantity_predict_in_2_years('Marketing', 600)
+    print(predict)
     wage_of_dep = Apple.calculate_middle_sal_of_all_dep('HR', 85, 1200)
     print(wage_of_dep)
-
