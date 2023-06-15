@@ -7,6 +7,13 @@ class Worker:
         self.__experience = experience
         self.__salary = salary
 
+    def promotion(self, name: str, experience: int | float):
+        if isinstance(experience, int | float) and experience >= 1.5:
+            print(f'Dear {name}, you are ready for promotion, congratulations!')
+        else:
+            print(f'Dear {name} your {experience} of experience is too less for promotion\n'
+                  f'Let\'s come back to this point once you reach no less than 1.5 years of experience')
+
     @staticmethod
     def bonuses_dates_for_each_worker():
         print('01.02, 01.05, 01.08, 31.12')
@@ -93,15 +100,8 @@ class Worker:
         raise NotImplementedError('Delete is not supported for this attribute')
 
     def __str__(self):
-        class_methods = [
-            'convert_salary_to_uah',
-            'salary_coefficient',
-            'create_worker_with_salary_expectation_in_1_year'
-        ]
-        class_methods_str = ", ".join(class_methods)
-
         return f"name='{self.__name}', rank='{self.__rank}', experience={self.__experience}, " \
-               f"salary={self.__salary}, Class Methods: {class_methods_str}"
+               f"salary={self.__salary}"
 
 if __name__ == '__main__':
     tim = Worker('Tim', 'CEO', 15.5, 18000)
@@ -112,3 +112,5 @@ if __name__ == '__main__':
     new_func = Worker.salary_coefficient('Joan', 'Director', 8, 10000)
     max_ = Worker.create_worker_with_salary_expectation_in_1_year('Max', 'QA Automation', 1.5, 2500)
     print(max_)
+    promotion_var = Worker()
+    promotion_var.promotion('Ann', 1.4)

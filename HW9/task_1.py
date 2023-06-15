@@ -9,6 +9,15 @@ class Apple:
         self.__total_dep_exp = total_dep_exp
         self.__salary_of_worker = salary_of_worker
 
+    def calc_half_of_dep(self, department_name: str, workers_quantity: int):
+        res = workers_quantity / 2
+        return f'Your department {department_name} half of workers quantity is {res}'
+
+    def calc_next_year_budget(self, department_name: str, workers_quantity: int, salary_of_worker: int):
+        next_year_projects = 500000
+        result = next_year_projects + (workers_quantity * salary_of_worker)
+        return f'Your next year budget for {department_name} department has to be {result}$'
+
     @staticmethod
     def company_palce_in_top_list():
         print('Our company is on the 3rd place')
@@ -106,13 +115,8 @@ class Apple:
         raise NotImplementedError('Delete is not supported for this attribute')
 
     def __str__(self):
-        class_methods = [
-            'workers_quantity_predict_in_2_years',
-            'calculate_middle_sal_of_all_de'
-        ]
-        class_methods_str = ", ".join(class_methods)
-        return f"{self.department_name}, {self.workers_quantity}, {self.total_dep_exp}, {self.productivity_percent_of_department}, " \
-               f"{self.salary_of_worker}, Class Methods: {class_methods_str}"
+        return f"{self.department_name}, {self.workers_quantity}, {self.productivity_percent_of_department}," \
+               f"{self.total_dep_exp}, {self.salary_of_worker}"
 
 
 if __name__ == '__main__':
@@ -121,3 +125,7 @@ if __name__ == '__main__':
     print(predict)
     wage_of_dep = Apple.calculate_middle_sal_of_all_dep('HR', 85, 1200)
     print(wage_of_dep)
+    instance = Apple()
+    print(instance.calc_half_of_dep('Marketing', 300))
+    instance_2 = Apple()
+    print(instance_2.calc_next_year_budget('QA', 15, 1400))
