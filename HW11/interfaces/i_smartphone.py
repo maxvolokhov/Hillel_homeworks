@@ -10,4 +10,3 @@ class Smartphone(ABC):
     @abstractmethod
     def _update_software(self):
         pass
-

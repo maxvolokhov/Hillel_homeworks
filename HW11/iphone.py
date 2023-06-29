@@ -1,5 +1,5 @@
-from HW11.interfaces.phone import Phone
-from HW11.interfaces.smartphone import Smartphone
+from HW11.interfaces.i_phone import Phone
+from HW11.interfaces.i_smartphone import Smartphone
 from time import time, sleep
 
 
